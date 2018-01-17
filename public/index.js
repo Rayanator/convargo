@@ -146,19 +146,29 @@ const actors = [{
 
 function pricing()
 {
-	deliveries.forEach(function(deliverie)
+	deliveries.forEach(function(delivery)
 	{
-		var idToLook = deliverie.truckerId
+		var idToLook = delivery.truckerId
 		truckers.forEach(function(trucker)
 		{
 			if(trucker.id == idToLook)
 			{
-				var distance = deliverie.distance * trucker.pricePerKm;
-				var volume  = trucker.pricePerVolume * deliverie.volume;
-				deliverie.price = distance + volume ;
-			}
+				var distance = delivery.distance * trucker.pricePerKm;
+				var price_volume = trucker.pricePerVolume;
+				
+				if(delivery.volume>5 && delivery.volume<11)
+				        price_volume = (trucker.pricePerVolume*0.9);
+				else if(delivery.volume>10 && delivery.volume <26)
+				        price_volume = trucker.pricePerVolume*0.7;
+				else if (delivery.volume>25)
+				        price_volume = trucker.pricePerVolume*0.5;
+
+				var volume  = price_volume * delivery.volume;
+				delivery.price= volume + distance;
+				console.log(delivery.price);
+			}						
 		})
-})
+	})
 }
 
 pricing();
