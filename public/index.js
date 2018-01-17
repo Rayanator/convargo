@@ -153,6 +153,8 @@ function pricing()
 		{
 			if(trucker.id == idToLook)
 			{
+				delivery.options = true ;
+				trucker.pricePerVolume += 1;
 				var distance = delivery.distance * trucker.pricePerKm;
 				var price_volume = trucker.pricePerVolume;
 				
@@ -178,51 +180,6 @@ function pricing()
 
 
 
-/*
-function paying_actor()
-{
-	deliveries.forEach(function(delivery)
-	{
-		actors.forEach(function(actor)
-		{
-			var id_delivery = actor.deliveryId;
-			actor.payment.forEach(function(paymenta)
-			{				
-				if(id_delivery == delivery.id)
-				{
-
-					if (paymenta.who == 'shipper')
-					{	
-						paymenta.amount = delivery.price;;
-					}
-
-					if(paymenta.who == 'trucker')
-					{
-						paymenta.amount = delivery.price*0.7;
-					}
-
-					if(paymenta.who == 'treasury')
-					{
-						paymenta.amount = delivery.distance%500;
-					}
-
-					if(paymenta.who == 'insurance')	
-					{					
-						paymenta.amount = 0.15*delivery.price;
-					}
-					
-					if(paymenta.who == 'convargo')
-					{
-						paymenta.amount = (delivery.price*0.15) - (delivery.distance%500);
-					}
-
-				}
-
-			})
-		})
-	})
-}
-*/
 pricing();
 //paying_actor();
 
