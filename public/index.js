@@ -153,8 +153,10 @@ function pricing()
 		{
 			if(trucker.id == idToLook)
 			{
-				delivery.options = true ;
-				trucker.pricePerVolume += 1;
+				if(delivery.options.deductibleReduction == true)
+				{
+					trucker.pricePerVolume += 1;
+				}				
 				var distance = delivery.distance * trucker.pricePerKm;
 				var price_volume = trucker.pricePerVolume;
 				
